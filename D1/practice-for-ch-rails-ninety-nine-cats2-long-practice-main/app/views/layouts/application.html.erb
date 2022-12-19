@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>99 Cats</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -12,6 +13,32 @@
   </head>
 
   <body>
+
+
+
+    <% if session[:session_token] != nil %>
+      <h1> Welcome <%= current_user.username %></h1>
+      <form action="<% session_url %>" method="POST">
+        <input type="hidden" name="_method" method="delete">
+        <input type="submit" value="Log out">
+      </form>
+    <% else %>
+      <form action="<% new_user_url %>" method="GET">
+        <input type="submit" value="Sign up">
+      </form>
+      <form action="<% new_session_url %>" method="GET">
+        <input type="submit" value="Log in">
+      </form>
+
+    <% end %>
+      
+      
+      
+
+
+
+
+
     <nav class="main-nav">
       <h1><a href="<%= cats_url %>">99 Cats</a></h1>
     </nav>
